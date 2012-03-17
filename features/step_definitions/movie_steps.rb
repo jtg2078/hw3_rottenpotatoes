@@ -4,8 +4,13 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+    # | title                   | rating | release_date |
+    #Movie.find_or_create_by_title(:title => movie.title, {:rating => movie.rating, :release_date => movie.release_date})
+    # expectedMovies = Movie.find_or_create_by_title(movie.titled) { |m| m.rating => movie.rating, m.release_date => movie.release_date } )
+    Movie.find_or_create_by_title(:title => movie[:title], :rating => movie[:rating], :release_date => movie[:release_date])
+    # Movie.new(:title => movie.title, :rating => movie.rating, :release_date => movie.release_date)
   end
-  assert false, "Unimplmemented"
+  # assert false, "Unimplmemented"
 end
 
 # Make sure that one string (regexp) occurs before or after another one
