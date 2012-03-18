@@ -28,12 +28,10 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to ensure that PG and R movies are visible
   # enter step(s) to ensure that other movies are not visible
   Given I am on the RottenPotatoes home page
-  When I check the following ratings: PG, R
   # When I check "ratings_PG"
   # And I check "ratings_R"
+  When I check the following ratings: PG, R
   And I uncheck the following ratings: G, PG-13
-  # And I uncheck "ratings_G"
-  # And I uncheck "ratings_PG-13"
   And I press "ratings_submit"
   Then I should be on the RottenPotatoes home page
   And I should see "The Terminator"
@@ -49,6 +47,16 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
 
 Scenario: no ratings selected
   # see assignment
-
+  # Given I am on the RottenPotatoes home page
+  # When I uncheck the following ratings: G, PG, PG-13, R
+  # And I press "ratings_submit"
+  # Then I should be on the RottenPotatoes home page
+  # Then I should see none of the movies
+  
 Scenario: all ratings selected
   # see assignment
+  Given I am on the RottenPotatoes home page
+  When I check the following ratings: G, PG, PG-13, R
+  And I press "ratings_submit"
+  Then I should be on the RottenPotatoes home page
+  And I should see all of the movies 

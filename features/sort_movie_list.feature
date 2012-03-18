@@ -23,7 +23,20 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   # your steps here
+  Given I am on the RottenPotatoes home page
+  When I follow "title_header"
+  And I check the following ratings: G, R
+  And I press "ratings_submit"
+  Then I should be on the RottenPotatoes home page
+  And I should see "Aladdin" before "Amelie"
+  
 
 Scenario: sort movies in increasing order of release date
   # your steps here
+  Given I am on the RottenPotatoes home page
+  When I follow "release_date_header"
+  And I check the following ratings: G, R
+  And I press "ratings_submit"
+  Then I should be on the RottenPotatoes home page
+  And I should see "When Harry Met Sally" before "Amelie"
 
